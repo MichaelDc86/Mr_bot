@@ -1,0 +1,24 @@
+{% extends 'count_app/base.html' %}
+{% load static %}
+
+{% block container %}
+<!--{#{ request.resolver_match }#}-->
+<!--{#{ object_list }#}-->
+<!--{{ title }}-->
+
+<div class='menu'>
+    <a href="http://127.0.0.1:8000/admin/">admin</a>
+</div>
+
+
+<div class="table">
+    <table border="1" width="100%" cellpadding="5">
+        <tr>
+            <th>Счетчик</th>
+            <th>{{ objects.count }}</th>
+            
+        </tr>
+    </table>
+</div>
+
+{% endblock %}
