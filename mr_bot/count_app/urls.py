@@ -21,5 +21,10 @@ app_name = 'count_app'
 
 urlpatterns = [
     re_path(r'^$', count.CountListView.as_view(), name='count_list'),
+    re_path(r'^login/$', count.CountLoginView.as_view(), name='login'),
+    re_path(r'^logout/$', count.CountLogoutView.as_view(), name='logout'),
+    re_path(r'^register/$', count.UserRegister.as_view(), name='register'),
+    re_path(r'^update/(?P<pk>\d+)$', count.CounterUpdate.as_view(), name='update'),
+    re_path(r'^delete/(?P<pk>\d+)$', count.CounterDelete.as_view(), name='delete'),
 
 ]

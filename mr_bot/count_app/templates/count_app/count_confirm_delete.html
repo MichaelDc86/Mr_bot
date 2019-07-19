@@ -1,0 +1,15 @@
+{% extends 'count_app/base.html' %}
+{% load static %}
+
+
+{% block container %}
+    <div>
+        Уверены, что хотите сбросить счетчик пользователя на 1<b>{{ user.username }}?
+        <form method="post">
+            {% csrf_token %}
+            <input class="btn btn-danger" type="submit" value="сбросить">
+        </form>
+
+        <a href="{% url 'main:count_list' %}" class="btn btn-success">отмена</a>
+    </div>
+{% endblock %}

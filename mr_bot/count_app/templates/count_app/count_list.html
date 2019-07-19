@@ -2,23 +2,45 @@
 {% load static %}
 
 {% block container %}
-<!--{#{ request.resolver_match }#}-->
-<!--{#{ object_list }#}-->
+<!--{{ request.resolver_match }}-->
+<!--{{ object_list }}-->
 <!--{{ title }}-->
 
-<div class='menu'>
-    <a href="http://127.0.0.1:8000/admin/">admin</a>
-</div>
 
+    {% if user.is_authenticated %}
+       
+        <div class='menu'>
+            <a href="/admin">admin</a>
+            <a href="{% url 'main:logout' %}">logout</a>
+        </div>
+        
+        <div class="main">
+              {% if object_list %}
+                   {% for object in object_list %}
+                        <div class="count">
+                           <p class="dat">Счетчик пользователя</p>
+                           <p class="dat">{{ user }}</p>
+                           <p class="dat">{{ object.count }}</p>
+                           <a class="modif" href="{% url 'main:update' object.pk %}">update</a>
+                           <a class="modif" href="{% url 'main:delete' object.pk %}">delete</a>
+                        </div>
+                    {% endfor %}
+              {% endif %}
 
-<div class="table">
-    <table border="1" width="100%" cellpadding="5">
-        <tr>
-            <th>Счетчик</th>
-            <th>{{ objects.count }}</th>
-            
-        </tr>
-    </table>
-</div>
+        </div>
+    {% else %}
+       <div class='menu'>
+            <a href="/admin">admin</a>
+            <a href="{% url 'main:login' %}">login</a>
+            <a href="{% url 'main:register' %}">register</a>
+        </div>
+        {% for object in object_list %}
+           <div class="count">
+                <p class="dat">Счетчик пользователя</p>
+                <p class="dat">{{ object.usr }}</p>
+                <p class="dat">{{ object.count }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
 
 {% endblock %}

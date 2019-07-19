@@ -1,0 +1,35 @@
+{% extends 'count_app/base.html' %}
+{% load static %}
+
+{% block container %}
+<!--{{ request.resolver_match }}-->
+<!--{{ object_list }}-->
+<!--{{ title }}-->
+
+    {% if user.is_authenticated %}
+       
+        <a href="{% url 'main:logout' %}">logout</a>
+        <a href="main:count_list">на главную</a>
+        
+        
+<div class="main">
+      
+    <p class="dat">Счетчик пользователя</p>
+    <p class="dat">{{ user }}</p>
+    <form method="post">
+         {% csrf_token %}
+         {{ form.as_p }}
+         <input class="form-control" type="submit" value="Применить">
+    </form>
+
+
+</div>
+    {% else %}
+       <div class='menu'>
+            <a href="/admin/">admin</a>
+            <a href="{% url 'main:login' %}">login</a>
+            <a href="{% url 'main:register' %}">register</a>
+        </div>
+    {% endif %}
+
+{% endblock %}

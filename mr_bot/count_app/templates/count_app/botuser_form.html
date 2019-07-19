@@ -1,0 +1,20 @@
+{% extends 'count_app/base.html' %}
+{% load static %}
+
+{% block container %}
+
+
+
+    <div class="register">
+       
+        <form class="form-horizontal" method="post">
+
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <input class="form-control" type="submit" value="зарегестрироваться">
+
+        </form>
+
+    </div>
+{% endblock %}
